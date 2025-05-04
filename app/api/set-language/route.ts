@@ -1,14 +1,14 @@
 import { NextResponse } from 'next/server';
 
-export async function POST(req: Request) {
-  const { searchParams } = new URL(req.url);
+export async function POST(request: Request) {
+  const { searchParams } = new URL(request.url);
   const lang = searchParams.get('lang') || 'en';
 
-  const res = NextResponse.json({ success: true });
-  res.cookies.set('NEXT_LOCALE', lang, {
+  const response = NextResponse.json({ message: 'Language set' });
+  response.cookies.set('lang', lang, {
     path: '/',
-    maxAge: 60 * 60 * 24 * 365 // 1 year
+    maxAge: 60 * 60 * 24 * 365, // 1 year
   });
 
-  return res;
+  return response;
 }
