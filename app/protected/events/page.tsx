@@ -6,7 +6,7 @@ import { InfoIcon } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { redirect } from "next/navigation";
 
-export default async function ReservationPage() {
+export default async function EventsPage() {
 
   const supabase = await createClient();
 
