@@ -9,9 +9,14 @@ const nextConfig: NextConfig = {
             hostname: 'yeyak.seoul.go.kr',
             pathname: '/web/common/file/**',
           },
+          {
+            protocol: 'https',
+            hostname: 'encrypted-tbn0.gstatic.com',
+            pathname: '/web/common/file/**',
+          },
         ],
     },
 };
- 
+
 const withNextIntl = createNextIntlPlugin();
 export default withNextIntl(nextConfig);
