@@ -44,7 +44,7 @@ export async function GET(
       content,
       created_at,
       user_id,
-      profiles:user_id (
+      user_details:user_id (
         username,
         avatar_url
       )

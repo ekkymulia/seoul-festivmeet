@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, use } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -21,7 +21,7 @@ interface ChatMessage {
   content: string;
   created_at: string;
   user_id: string;
-  profiles: {
+  user_details: {
     username: string;
     avatar_url: string;
   };
@@ -33,9 +33,10 @@ interface User {
 }
 
 // Chat room page
-export default function ChatRoomPage({ params }: { params: { id: string } }) {
+
+export default function ChatRoomPage({ params }: { params: Promise<{ id: string }> }) {
   const router = useRouter();
-  const { id } = params;
+  const { id } = use(params);
   const supabase = createClient();
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -131,7 +132,7 @@ export default function ChatRoomPage({ params }: { params: { id: string } }) {
                 content,
                 created_at,
                 user_id,
-                profiles:user_id (
+                user_details:ref_id (
                   username,
                   avatar_url
                 )
@@ -325,7 +326,7 @@ export default function ChatRoomPage({ params }: { params: { id: string } }) {
                     <p>{message.content}</p>
                   </div>
                   <div className="text-xs text-gray-500 mt-1">
-                    {message.profiles?.username || "Unknown user"} •{" "}
+                    {message.user_details?.username || "Unknown user"} •{" "}
                     {new Date(message.created_at).toLocaleTimeString()}
                   </div>
                 </div>
