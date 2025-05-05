@@ -1,8 +1,10 @@
 'use client'
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Sun, Moon, Github, Heart, Coffee, User, Users, Shuffle, MessageSquareMore } from 'lucide-react';
 
-// Theme switcher component
+// Theme switcher component remains unchanged
+
 const ThemeSwitcher = () => {
   const [theme, setTheme] = useState('light');
   
@@ -34,36 +36,43 @@ const ThemeSwitcher = () => {
 // Main footer component
 export default function FooterNav() {
   const [activeTab, setActiveTab] = useState('swipe');
+  const router = useRouter();
   
   const menuItems = [
-    { id: 'match', name: 'My Match', icon: <Users size={20} /> },
-    { id: 'swipe', name: 'Find Event', icon: <Shuffle size={20} /> },
-    { id: 'chat', name: 'Messages', icon: <MessageSquareMore size={20} /> },
-    { id: 'profile', name: 'My Profile', icon: <User size={20} /> }
+    { id: 'match', name: 'My Match', icon: <Users size={20} />, path: '/protected/CheckingReservation' },
+    { id: 'swipe', name: 'Find Event', icon: <Shuffle size={20} />, path: '/protected/events' },
+    { id: 'chat', name: 'Messages', icon: <MessageSquareMore size={20} />, path: '/protected/chat' },
+    { id: 'profile', name: 'My Profile', icon: <User size={20} />, path: '/protected/account' }
   ];
+  
+  const handleNavigation = (id: string, path: string) => {
+    setActiveTab(id);
+    router.push(path);
+  };
   
   return (
     <footer className="w-full flex flex-col mx-auto sticky bottom-0 z-10 bg-background border-t">
       {/* Menu Navigation */}
       <div className="w-full max-w-5xl mx-auto">
         <nav className="flex justify-between items-center">
-          {menuItems.map(item => (
+          {menuItems.map(({ id, name, icon, path }) => (
             <button
-              key={item.id}
+              key={id}
               className={`flex-1 flex flex-col items-center py-3 text-sm ${
-                activeTab === item.id ? 'text-blue-600' : 'text-gray-500 hover:text-gray-700'
+                activeTab === id ? 'text-blue-600' : 'text-gray-500 hover:text-gray-700'
               }`}
-              onClick={() => setActiveTab(item.id)}
+              onClick={() => handleNavigation(id, path)}
             >
-              {item.icon}
-              <span className="mt-1 text-xs">{item.name}</span>
+              {icon}
+              <span className="mt-1 text-xs">{name}</span>
             </button>
           ))}
         </nav>
       </div>
-      
-      {/* Secondary footer content */}
-      {/* <div className="w-full border-t text-xs">
+
+      {/* Secondary footer content (commented out) */}
+    {/* Secondary footer content */}
+      <div className="w-full border-t text-xs">
         <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between px-4 py-2 gap-2">
           <div className="flex items-center gap-2">
             <p>
@@ -93,7 +102,7 @@ export default function FooterNav() {
             <ThemeSwitcher />
           </div>
         </div>
-      </div> */}
+      </div>
     </footer>
   );
 }
