@@ -1,28 +1,31 @@
 'use client';
-import Link from "next/link";
-import { Button } from "./ui/button";
-import { startTransition, useTransition } from "react";
 
+import {useEffect, useState} from 'react';
 
 export default function LangButton() {
-  const [isPending, startTransition] = useTransition();
+  const [locale, setLocale] = useState('en');
 
-  const switchLanguage = async (lang: string) => {
-    await fetch(`/api/set-language?lang=${lang}`, { method: 'POST' });
-    startTransition(() => {
-      window.location.reload(); // Reload to apply the new language
-    });
+  useEffect(() => {
+    // On mount, set locale from cookie
+    const cookieLocale = document.cookie
+      .split('; ')
+      .find(row => row.startsWith('NEXT_LOCALE='))
+      ?.split('=')[1];
+    if (cookieLocale) setLocale(cookieLocale);
+  }, []);
+
+  const toggleLocale = () => {
+    const newLocale = locale === 'en' ? 'kor' : 'en';
+    // Set cookie for next-intl to read next time
+    document.cookie = `NEXT_LOCALE=${newLocale}; path=/`;
+    setLocale(newLocale);
+    // Reload to re-render with new locale, since next-intl is SSR
+    window.location.reload();
   };
 
   return (
-    <>
-        <button
-            onClick={() => switchLanguage('kor')}
-            disabled={isPending}
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
-        >
-            Switch to Korean
-        </button>
-    </>
-  )
+    <button onClick={toggleLocale}>
+      {locale === 'en' ? '한국어로 변경' : 'Switch to English'}
+    </button>
+  );
 }
