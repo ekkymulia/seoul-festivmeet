@@ -3,10 +3,12 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { createClient } from '@/utils/supabase/client';
 import EventCard from './EventCard';
+import { useRouter } from 'next/navigation';
 
 const LIMIT = 10; // Only define once
 
 export default function EventsFeed() {
+  const router = useRouter();
   const supabase = createClient();
   const [events, setEvents] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
@@ -146,14 +148,18 @@ export default function EventsFeed() {
 
   return (
     <>
-      {/* Search + Menu (Keep as-is) */}
-      <div className="flex justify-between items-start mb-4">
+      {/* Search + Menu (Make the div clickable) */}
+      <div
+        className="flex justify-between items-start mb-4 cursor-pointer"
+        onClick={() => router.push('/protected/events/search')}
+      >
         <div className="flex-1">
           <div className="relative">
             <input
               type="text"
               placeholder="Search"
               className="w-full border rounded-full py-2 px-4 pl-10"
+              readOnly // Prevents typing, since the div is the clickable area
             />
             <span className="absolute left-3 top-2.5 text-yellow-500">🔍</span>
           </div>
