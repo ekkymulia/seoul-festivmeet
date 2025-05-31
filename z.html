@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Eats Season</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<style>
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f3f5e8;
+  color: #2b3c2e;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #275231;
+  color: white;
+  padding: 10px 20px;
+}
+
+.navbar .logo {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.navbar nav a, .auth .lang {
+  margin: 0 10px;
+  color: white;
+  text-decoration: none;
+}
+
+.auth .btn-login,
+.auth .btn-signup {
+  margin: 0 5px;
+  background: white;
+  color: #275231;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 20px;
+  background: #dde4cb;
+}
+
+.hero-text h1 {
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+.hero-text p {
+  margin: 10px 0;
+}
+
+.btn-browse {
+  background: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.savings {
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+
+.highlight {
+  background: #d2e16b;
+  padding: 15px;
+  text-align: center;
+  border-radius: 10px;
+  width: 250px;
+}
+
+.highlight img {
+  max-width: 100%;
+  height: auto;
+}
+
+.price-info {
+  margin-top: 10px;
+}
+
+.about, .recipes, .seasonal-produce {
+  padding: 20px;
+}
+
+.recipe-list {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.recipe-card {
+  background: #cfe19f;
+  padding: 10px;
+  border-radius: 10px;
+  width: 140px;
+  text-align: left;
+}
+
+.recipe-card.more {
+  background: #e6e9dc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.produce-list {
+  display: flex;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.produce-item {
+  background: #f5f5f5;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.produce-item img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+}
+
+.produce-item.active {
+  background: #275231;
+  color: white;
+}
+
+footer {
+  background: #275231;
+  color: white;
+  text-align: center;
+  padding: 15px;
+}
+
+footer .footer-links a {
+  margin: 0 10px;
+  color: white;
+  text-decoration: none;
+}
+</style>
+  <header class="navbar">
+    <div class="logo">🍴 Eats Season</div>
+    <nav>
+      <a href="#">Seasonal Produce</a>
+      <a href="#">Market Price</a>
+    </nav>
+    <div class="auth">
+      <button class="btn-login">Login</button>
+      <button class="btn-signup">Signup</button>
+      <div class="lang">EN | KR</div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Explore <br/> Seasonal Eats</h1>
+      <p>Discover fresh produce, recipes and more</p>
+      <button class="btn-browse">Browse recipe</button>
+      <p class="savings">You can save up to 400.000 ₩ this month*</p>
+    </div>
+    <div class="highlight">
+      <p>Top Produce in Season</p>
+      <h2>Broccoli</h2>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/03/Broccoli_and_cross_section_edit.jpg" alt="Broccoli">
+      <div class="price-info">
+        <span class="currency">₩</span>
+        <span class="price">1000 W/Pcs</span>
+        <span class="location">Jinju-si</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="about">
+    <h2>About Broccoli</h2>
+    <p>
+      Broccoli is a type of flower vegetable where the flower is consumed. Most broccoli sold commercially has the leaves removed, with only the flower buds being sold. When examining broccoli first, check if the buds are plump, small, and dark green. If they have turned yellow, they are old. Those exposed to frost may have a purplish tinge, so be cautious, as good broccoli will form when gently squeezed, at room and full center...
+    </p>
+  </section>
+
+  <section class="recipes">
+    <h2>Top Recipes</h2>
+    <div class="sort">
+      Sort by: <button>Cooking Time ⌄</button>
+    </div>
+    <div class="recipe-list">
+      <div class="recipe-card">Samgyopsal Broccoli <br/><small>25 Min | Easy | 325 Kcal <br/> 4000 ₩ | 1-3 Person</small></div>
+      <div class="recipe-card">Samgyopsal Broccoli <br/><small>25 Min | Easy | 325 Kcal <br/> 4000 ₩ | 1-3 Person</small></div>
+      <div class="recipe-card">Samgyopsal Broccoli <br/><small>25 Min | Easy | 325 Kcal <br/> 4000 ₩ | 1-3 Person</small></div>
+      <div class="recipe-card">Samgyopsal Broccoli <br/><small>25 Min | Easy | 325 Kcal <br/> 4000 ₩ | 1-3 Person</small></div>
+      <div class="recipe-card more">Browse More →</div>
+    </div>
+  </section>
+
+  <section class="seasonal-produce">
+    <h2>Other Current Seasonal Produce</h2>
+    <div class="produce-list">
+      <div class="produce-item active">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/03/Broccoli_and_cross_section_edit.jpg" alt="Broccoli"/>
+        <span>Broccoli</span>
+      </div>
+      <div class="produce-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Kiwi_aka.jpg" alt="Kiwi"/>
+        <span>Kiwi</span>
+      </div>
+      <div class="produce-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Carrot.jpg" alt="Carrot"/>
+        <span>Carrot</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-links">
+      <a href="#">About</a>
+      <a href="#">Terms</a>
+      <a href="#">Contact</a>
+      <a href="#">Social</a>
+    </div>
+  </footer>
+</body>
+</html>
